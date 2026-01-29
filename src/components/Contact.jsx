@@ -37,19 +37,38 @@ export default function Contact() {
     const handleFocus = (field) => setFocusedField(field);
     const handleBlur = () => setFocusedField(null);
 
+    const [error, setError] = useState(null);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setError(null);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formState),
+            });
 
-        setIsSubmitting(false);
-        setSubmitted(true);
-        setFormState({ name: '', email: '', subject: '', message: '' });
+            const data = await response.json();
 
-        // Reset success state after 5 seconds
-        setTimeout(() => setSubmitted(false), 5000);
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            setSubmitted(true);
+            setFormState({ name: '', email: '', subject: '', message: '' });
+
+            // Reset success state after 5 seconds
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (err) {
+            setError(err.message || 'Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const contactInfo = [
@@ -181,6 +200,16 @@ export default function Contact() {
                     >
                         <div className="glass p-8 md:p-10 relative overflow-hidden h-full flex flex-col justify-center">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e60000] to-[#e60000] opacity-10 blur-2xl rounded-bl-full pointer-events-none" />
+
+                            {error && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-center"
+                                >
+                                    {error}
+                                </motion.div>
+                            )}
 
                             {submitted ? (
                                 <motion.div

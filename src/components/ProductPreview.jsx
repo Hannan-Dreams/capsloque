@@ -129,7 +129,7 @@ export default function ProductPreview() {
                 {/* Horizontal Scroll Container */}
                 <div
                     ref={scrollRef}
-                    className="flex gap-6 overflow-x-auto py-4 scrollbar-hide snap-x snap-mandatory"
+                    className="flex gap-6 overflow-x-auto py-4 scrollbar-hide snap-x snap-mandatory items-stretch"
                     style={{
                         scrollbarWidth: 'none',
                         msOverflowStyle: 'none',
@@ -142,7 +142,7 @@ export default function ProductPreview() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
-                            className="flex-shrink-0 w-[300px] snap-start glass-card p-6 border border-[rgba(0,0,0,0.05)] hover:border-[#e60000]/30 transition-all duration-300 group"
+                            className="flex-shrink-0 w-[300px] snap-start glass-card p-6 border border-[rgba(0,0,0,0.05)] hover:border-[#e60000]/30 transition-all duration-300 group h-[220px]"
                         >
                             <div className="flex flex-col h-full">
                                 <div className="flex items-center justify-between mb-4">

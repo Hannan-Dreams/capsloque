@@ -53,7 +53,7 @@ export default function Hero() {
 
         // Initialize particles spread across entire page - Antigravity style
         const initParticles = () => {
-            const numParticles = 400;
+            const numParticles = 150;
             particlesRef.current = [];
 
             for (let i = 0; i < numParticles; i++) {

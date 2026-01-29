@@ -45,7 +45,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="pt-4 relative border-t border-[rgba(0,0,0,0.1)] bg-[rgba(238, 240, 245, 0.8)] backdrop-blur-xl">
+        <footer className="pt-4 pb-4 relative border-t border-[rgba(0,0,0,0.1)] bg-[rgba(238, 240, 245, 0.8)] backdrop-blur-xl">
             <div className="bg-grid opacity-30" />
 
             <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10">
