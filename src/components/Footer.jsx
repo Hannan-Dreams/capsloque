@@ -58,9 +58,9 @@ export default function Footer() {
                             viewport={{ once: true }}
                             className="flex items-center gap-3 mb-6"
                         >
-                            <div className="w-10 h-10 bg-gradient-to-br from-[#e60000] to-[#e60000] rounded-lg flex items-center justify-center">
+                            {/* <div className="w-10 h-10 bg-gradient-to-br from-[#e60000] to-[#e60000] rounded-lg flex items-center justify-center">
                                 <span className="text-black font-bold text-xl">C</span>
-                            </div>
+                            </div> */}
                             <span className="text-xl font-bold tracking-tight">
                                 <span className="text-black">CAPS</span>
                                 <span className="text-[#e60000]">LOQUE</span>

@@ -17,7 +17,7 @@ export const metadata = {
   openGraph: {
     title: "CAPSLOQUE | Engineering the Future",
     description: "A futuristic tech venture building cutting-edge digital solutions and pioneering the future of technology.",
-    url: "https://capsloque.com",
+    url: "https://capsloque.in",
     siteName: "Capsloque",
     type: "website",
     locale: "en_US",
