@@ -36,6 +36,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Floating Pill Navbar */
+.navbar-pill {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes navbar-glow {
+  0%, 100% {
+    border-color: rgba(230, 0, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 12px rgba(230, 0, 0, 0.04);
+  }
+  50% {
+    border-color: rgba(230, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(230, 0, 0, 0.08);
+  }
+}
+
 /* Glassmorphism Utilities - Dark Theme */
 .glass {
   background: rgba(255, 255, 255, 0.03);
