@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
-/* Custom CSS Variables for Capsloque Light Theme */
+/* Custom CSS Variables for Capsloque Dark Theme */
 :root {
-  --background: #ffffff;
-  --background-secondary: #f8f8f8;
+  --background: #0a0a0a;
+  --background-secondary: #111111;
   --accent-primary: #e60000;
   --accent-primary-glow: rgba(230, 0, 0, 0.3);
-  --text-primary: #000000;
-  --text-secondary: rgba(0, 0, 0, 0.7);
-  --text-muted: rgba(0, 0, 0, 0.5);
-  --surface-glass: rgba(0, 0, 0, 0.03);
-  --surface-glass-border: rgba(0, 0, 0, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --surface-glass: rgba(255, 255, 255, 0.03);
+  --surface-glass-border: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
@@ -30,37 +30,56 @@ html {
 
 body {
   font-family: 'Lexend', sans-serif;
-  background: #ffffff;
+  background: #0a0a0a;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Glassmorphism Utilities - Light Theme */
+/* Glassmorphism Utilities - Dark Theme */
 .glass {
-  background: var(--surface-glass);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--surface-glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
 }
 
 .glass-card {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(230, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(230, 0, 0, 0.3);
   transform: translateY(-8px) scale(1.02);
   box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.1),
-    0 0 40px rgba(230, 0, 0, 0.05);
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(230, 0, 0, 0.08);
+}
+
+/* Dark Glassmorphism Card */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-dark:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(230, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(230, 0, 0, 0.08);
 }
 
 /* Glow Effects - Red Accent */
@@ -103,12 +122,12 @@ body {
 
 .btn-secondary {
   background: transparent;
-  color: #000000;
+  color: #ffffff;
   padding: 14px 32px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -130,7 +149,7 @@ body {
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  color: #000000;
+  color: #ffffff;
 }
 
 .section-subtitle {
@@ -141,24 +160,30 @@ body {
   line-height: 1.7;
 }
 
-/* Animated Background Grid - Subtle */
+/* Animated Background Grid - Dark Theme */
 .bg-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
 
-/* Custom Scrollbar - Light Theme */
+/* Dot Grid Background */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Custom Scrollbar - Dark Theme */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -231,13 +256,13 @@ body {
   animation: rotate 20s linear infinite;
 }
 
-/* Form Input Styles */
+/* Form Input Styles - Dark Theme */
 .input-glass {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 16px 20px;
-  color: #000000;
+  color: #ffffff;
   font-size: 1rem;
   font-family: 'Lexend', sans-serif;
   transition: all 0.3s ease;
@@ -247,8 +272,8 @@ body {
 .input-glass:focus {
   outline: none;
   border-color: #e60000;
-  box-shadow: 0 0 20px rgba(230, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.01);
+  box-shadow: 0 0 20px rgba(230, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .input-glass::placeholder {

@@ -5,17 +5,17 @@ import { motion } from 'framer-motion';
 const stats = [
     { value: '50+', label: 'Projects Delivered', color: '#e60000' },
     { value: '100%', label: 'Client Satisfaction', color: '#e60000' },
-    { value: '24/7', label: 'Support Available', color: '#e60000'},
+    { value: '24/7', label: 'Support Available', color: '#e60000' },
 ];
 
 export default function About() {
     return (
-        <section id="about" className="section relative overflow-hidden">
+        <section id="about" className="section relative overflow-hidden bg-[#0a0a0a]">
             <div className="bg-grid opacity-30" />
 
             {/* Decorative Orbs */}
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#e60000] rounded-full blur-[200px] opacity-10" />
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#e60000] rounded-full blur-[200px] opacity-10" />
+            <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#e60000] rounded-full blur-[200px] opacity-[0.04]" />
+            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#e60000] rounded-full blur-[200px] opacity-[0.04]" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Section Header */}
@@ -46,12 +46,12 @@ export default function About() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="max-w-3xl mx-auto text-center mb-16"
                 >
-                    <p className="text-[rgba(0,0,0,0.7)] text-base sm:text-lg leading-relaxed mb-6">
-                        At <span className="text-black font-semibold">Capsloque</span>, we believe in pushing the boundaries
+                    <p className="text-white/50 text-base sm:text-lg leading-relaxed mb-6">
+                        At <span className="text-white font-semibold">Capsloque</span>, we believe in pushing the boundaries
                         of what's possible. From cutting-edge web development and machine learning solutions
                         to strategic brand design and marketing — we deliver excellence at every step.
                     </p>
-                    <p className="text-[rgba(0,0,0,0.7)] text-base sm:text-lg leading-relaxed">
+                    <p className="text-white/50 text-base sm:text-lg leading-relaxed">
                         Our vision extends beyond software. In 2026, we're expanding into hardware innovations
                         including drones, smart home appliances, and automobile modifications.
                     </p>
@@ -78,7 +78,7 @@ export default function About() {
                                 >
                                     {stat.value}
                                 </div>
-                                <div className="text-xs sm:text-sm text-[rgba(0,0,0,0.5)] uppercase tracking-wider">
+                                <div className="text-xs sm:text-sm text-white/40 uppercase tracking-wider">
                                     {stat.label}
                                 </div>
                             </motion.div>

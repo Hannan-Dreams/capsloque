@@ -36,11 +36,11 @@ export default function Hero() {
             '#FBBC04', // Google Yellow
             '#34A853', // Google Green
             '#9B59B6', // Purple accent
-            '#1a1a1a', // Dark grey
-            '#4a4a4a', // Medium grey
+            '#3a3a3a', // Dark grey
+            '#5a5a5a', // Medium grey
             '#7a7a7a', // Light grey
-            '#2d2d2d', // Near black
-            '#5a5a5a', // Grey
+            '#4a4a4a', // Near black
+            '#6a6a6a', // Grey
         ];
 
         // Set canvas size
@@ -229,7 +229,7 @@ export default function Hero() {
                 // Strong glow effect for particles near cursor
                 if (inInteraction) {
                     const glowIntensity = (1 - distance / interactionRadius);
-                    ctx.shadowColor = particle.isColored ? particle.color : 'rgba(66, 133, 244, 0.8)';
+                    ctx.shadowColor = particle.isColored ? particle.color : 'rgba(230, 0, 0, 0.8)';
                     ctx.shadowBlur = 15 * glowIntensity;
                 } else if (particle.isColored && distance < maxDistance) {
                     ctx.shadowColor = particle.color;
@@ -244,14 +244,14 @@ export default function Hero() {
                 ctx.restore();
             });
 
-            // Draw blue vignette/edge glow
+            // Draw red vignette/edge glow
             const gradient = ctx.createRadialGradient(
                 canvas.width / 2, canvas.height / 2, 0,
                 canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) * 0.7
             );
-            gradient.addColorStop(0, 'rgba(66, 133, 244, 0)');
-            gradient.addColorStop(0.7, 'rgba(66, 133, 244, 0)');
-            gradient.addColorStop(1, 'rgba(66, 133, 244, 0.15)');
+            gradient.addColorStop(0, 'rgba(230, 0, 0, 0)');
+            gradient.addColorStop(0.7, 'rgba(230, 0, 0, 0)');
+            gradient.addColorStop(1, 'rgba(230, 0, 0, 0.08)');
 
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -273,7 +273,7 @@ export default function Hero() {
     return (
         <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background */}
-            <div className="absolute inset-0 bg-white" />
+            <div className="absolute inset-0 bg-[#0a0a0a]" />
 
             {/* Particle canvas - hidden on mobile */}
             {!isMobile && (
@@ -284,22 +284,22 @@ export default function Hero() {
             )}
 
             {/* Subtle background gradients */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_rgba(0,0,0,0.05)_0%,_transparent_50%)]" />
-                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_rgba(230,0,0,0.05)_0%,_transparent_50%)]" />
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_rgba(230,0,0,0.06)_0%,_transparent_50%)]" />
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_rgba(230,0,0,0.04)_0%,_transparent_50%)]" />
             </div>
 
-            {/* Futuristic 3D Element - CENTERED BACKGROUND - Now visible on mobile */}
+            {/* Futuristic 3D Element - CENTERED BACKGROUND */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[550px] md:h-[550px] lg:w-[650px] lg:h-[650px] opacity-30 sm:opacity-35 md:opacity-40 flex items-center justify-center">
+                <div className="w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[550px] md:h-[550px] lg:w-[650px] lg:h-[650px] opacity-20 sm:opacity-25 md:opacity-30 flex items-center justify-center">
                     {/* Outer rotating ring */}
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
                         className="absolute w-full h-full"
                     >
-                        <div className="absolute inset-0 rounded-full border-2 border-black/30" />
-                        <div className="absolute inset-4 sm:inset-8 rounded-full border-2 border-black/20" />
+                        <div className="absolute inset-0 rounded-full border-2 border-white/20" />
+                        <div className="absolute inset-4 sm:inset-8 rounded-full border-2 border-white/10" />
                     </motion.div>
 
                     {/* Middle counter-rotating ring */}
@@ -308,7 +308,7 @@ export default function Hero() {
                         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                         className="absolute w-[80%] h-[80%]"
                     >
-                        <div className="absolute inset-0 rounded-full border-2 border-dashed border-black/25" />
+                        <div className="absolute inset-0 rounded-full border-2 border-dashed border-white/15" />
                     </motion.div>
 
                     {/* Core element */}
@@ -317,7 +317,7 @@ export default function Hero() {
                         transition={{ duration: 4, repeat: Infinity }}
                         className="relative w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px]"
                     >
-                        <div className="absolute inset-0 rounded-full bg-black/3 blur-xl" />
+                        <div className="absolute inset-0 rounded-full bg-white/[0.02] blur-xl" />
 
                         {/* Inner hexagon pattern */}
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -330,7 +330,7 @@ export default function Hero() {
                                     <polygon
                                         points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5"
                                         fill="none"
-                                        stroke="#000000"
+                                        stroke="#ffffff"
                                         strokeWidth="1"
                                         className="opacity-15"
                                     />
@@ -359,7 +359,7 @@ export default function Hero() {
                         transition={{ duration: 0.8, delay: 0.1 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] mb-6 sm:mb-8"
                     >
-                        <span className="block text-black">Engineering</span>
+                        <span className="block text-white">Engineering</span>
                         <span className="block mt-1 sm:mt-2">
                             <span className="bg-gradient-to-r from-[#e60000] via-[#cc0000] to-[#e60000] bg-clip-text text-transparent">
                                 the Future
@@ -371,7 +371,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-base sm:text-lg md:text-xl text-black mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2"
+                        className="text-base sm:text-lg md:text-xl text-white/60 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2"
                     >
                         We craft cutting-edge digital experiences and innovative tech solutions
                         that transform businesses and define tomorrow's possibilities.
@@ -394,7 +394,7 @@ export default function Hero() {
                         </a>
                         <a
                             href="#contact"
-                            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 w-full sm:w-auto rounded-xl font-semibold text-black border-2 border-black/20 transition-all duration-300 hover:border-[#e60000] hover:text-[#e60000] hover:-translate-y-1"
+                            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 w-full sm:w-auto rounded-xl font-semibold text-white border-2 border-white/20 transition-all duration-300 hover:border-[#e60000] hover:text-[#e60000] hover:-translate-y-1"
                         >
                             <span>Get in Touch</span>
                             <svg className="w-5 h-5 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -412,11 +412,11 @@ export default function Hero() {
                 transition={{ delay: 2 }}
                 className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden sm:flex"
             >
-                <span className="text-xs text-black/40 uppercase tracking-widest">Scroll</span>
+                <span className="text-xs text-white/30 uppercase tracking-widest">Scroll</span>
                 <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-5 h-8 rounded-full border-2 border-black/20 flex items-start justify-center p-1.5"
+                    className="w-5 h-8 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5"
                 >
                     <motion.div className="w-1 h-2 bg-[#e60000] rounded-full" />
                 </motion.div>

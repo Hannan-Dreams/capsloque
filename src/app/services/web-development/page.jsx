@@ -30,12 +30,12 @@ export default function WebDevelopment() {
     const technologies = ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'PostgreSQL', 'AWS'];
 
     return (
-        <main className="min-h-screen pt-24 pb-20">
+        <main className="min-h-screen pt-24 pb-20 bg-[#0a0a0a]">
             {/* Hero Section */}
             <section className="relative py-20 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#e60000]/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#e60000]/[0.06] to-transparent" />
                 <div className="container mx-auto px-6 relative z-10">
-                    <Link href="/#services" className="inline-flex items-center gap-2 text-[rgba(0,0,0,0.6)] hover:text-black mb-8 transition-colors">
+                    <Link href="/#services" className="inline-flex items-center gap-2 text-white/40 hover:text-white mb-8 transition-colors">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
@@ -48,10 +48,10 @@ export default function WebDevelopment() {
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-[#e60000] font-medium uppercase tracking-wider text-sm">Our Expertise</span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-white">
                             Web <span className="gradient-text">Development</span>
                         </h1>
-                        <p className="text-xl text-[rgba(0,0,0,0.7)] max-w-2xl leading-relaxed">
+                        <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
                             We craft powerful, scalable web solutions that drive business growth.
                             From stunning websites to complex web applications, we bring your vision to life.
                         </p>
@@ -75,11 +75,11 @@ export default function WebDevelopment() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="glass-card p-8 group"
+                                className="glass-card-dark p-8 group"
                             >
                                 <span className="text-4xl mb-4 block">{feature.icon}</span>
-                                <h3 className="text-xl font-semibold text-black mb-3">{feature.title}</h3>
-                                <p className="text-[rgba(0,0,0,0.6)]">{feature.description}</p>
+                                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                                <p className="text-white/40">{feature.description}</p>
                             </motion.div>
                         ))}
                     </motion.div>
@@ -95,8 +95,8 @@ export default function WebDevelopment() {
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-3xl font-bold text-black mb-4">Technologies We Use</h2>
-                        <p className="text-[rgba(0,0,0,0.6)]">Modern tools for modern solutions</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">Technologies We Use</h2>
+                        <p className="text-white/40">Modern tools for modern solutions</p>
                     </motion.div>
 
                     <div className="flex flex-wrap justify-center gap-4">
@@ -107,7 +107,7 @@ export default function WebDevelopment() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.05 }}
-                                className="px-6 py-3 rounded-full bg-[rgba(0,0,0,0.05)] border border-[rgba(0,0,0,0.1)] text-black font-medium hover:border-[#e60000] hover:bg-[rgba(255,45,85,0.1)] transition-all cursor-default"
+                                className="px-6 py-3 rounded-full bg-white/[0.05] border border-white/[0.1] text-white font-medium hover:border-[#e60000] hover:bg-[#e60000]/10 transition-all cursor-default"
                             >
                                 {tech}
                             </motion.span>
@@ -125,8 +125,8 @@ export default function WebDevelopment() {
                         viewport={{ once: true }}
                         className="glass p-12 text-center max-w-3xl mx-auto"
                     >
-                        <h2 className="text-3xl font-bold text-black mb-4">Ready to Build Something Amazing?</h2>
-                        <p className="text-[rgba(0,0,0,0.6)] mb-8">
+                        <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Something Amazing?</h2>
+                        <p className="text-white/40 mb-8">
                             Let's discuss your project and create a web solution that exceeds expectations.
                         </p>
                         <Link href="/#contact" className="btn-primary inline-flex items-center gap-2">

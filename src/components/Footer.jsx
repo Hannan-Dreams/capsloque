@@ -45,8 +45,8 @@ export default function Footer() {
     };
 
     return (
-        <footer className="pt-4 pb-4 relative border-t border-[rgba(0,0,0,0.1)] bg-[rgba(238, 240, 245, 0.8)] backdrop-blur-xl">
-            <div className="bg-grid opacity-30" />
+        <footer className="pt-4 pb-4 relative border-t border-white/[0.06] bg-[#0a0a0a]">
+            <div className="bg-grid opacity-20" />
 
             <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
@@ -58,15 +58,12 @@ export default function Footer() {
                             viewport={{ once: true }}
                             className="flex items-center gap-3 mb-6"
                         >
-                            {/* <div className="w-10 h-10 bg-gradient-to-br from-[#e60000] to-[#e60000] rounded-lg flex items-center justify-center">
-                                <span className="text-black font-bold text-xl">C</span>
-                            </div> */}
                             <span className="text-xl font-bold tracking-tight">
-                                <span className="text-black">CAPS</span>
+                                <span className="text-white">CAPS</span>
                                 <span className="text-[#e60000]">LOQUE</span>
                             </span>
                         </motion.div>
-                        <p className="text-[rgba(0,0,0,0.6)] mb-6 leading-relaxed text-sm sm:text-base">
+                        <p className="text-white/40 mb-6 leading-relaxed text-sm sm:text-base">
                             Engineering the future through innovative technology solutions
                             and cutting-edge digital experiences.
                         </p>
@@ -75,13 +72,13 @@ export default function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-black font-semibold mb-6">Services</h4>
+                        <h4 className="text-white font-semibold mb-6">Services</h4>
                         <ul className="space-y-3">
                             {footerLinks.services.map((link) => (
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-[rgba(0,0,0,0.6)] hover:text-[#e60000] transition-colors duration-300 text-sm sm:text-base"
+                                        className="text-white/40 hover:text-[#e60000] transition-colors duration-300 text-sm sm:text-base"
                                     >
                                         {link.name}
                                     </a>
@@ -92,13 +89,13 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h4 className="text-black font-semibold mb-6">Company</h4>
+                        <h4 className="text-white font-semibold mb-6">Company</h4>
                         <ul className="space-y-3">
                             {footerLinks.company.map((link) => (
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-[rgba(0,0,0,0.6)] hover:text-[#e60000] transition-colors duration-300 text-sm sm:text-base"
+                                        className="text-white/40 hover:text-[#e60000] transition-colors duration-300 text-sm sm:text-base"
                                     >
                                         {link.name}
                                     </a>
@@ -109,18 +106,7 @@ export default function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h4 className="text-black font-semibold mb-6">Get in Touch</h4>
-                        {/* <ul className="space-y-4">
-                            <li>
-                                <a
-                                    href="mailto:capsloqueinfo@gmail.com"
-                                    className="text-[rgba(0,0,0,0.6)] hover:text-[#e60000] transition-colors text-sm sm:text-base flex items-center gap-2"
-                                >
-                                    <EmailIcon />
-                                    capsloqueinfo@gmail.com
-                                </a>
-                            </li>
-                        </ul> */}
+                        <h4 className="text-white font-semibold mb-6">Get in Touch</h4>
                         <div className="flex gap-3 mt-4">
                             {footerLinks.social.map((social) => (
                                 <a
@@ -129,7 +115,7 @@ export default function Footer() {
                                     target={social.href.startsWith('http') ? '_blank' : undefined}
                                     rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                                     title={social.name}
-                                    className={`w-10 h-10 rounded-lg flex items-center justify-center text-black transition-all duration-300 ${social.className}`}
+                                    className={`w-10 h-10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 ${social.className}`}
                                 >
                                     {social.icon}
                                 </a>
@@ -139,15 +125,15 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-12 sm:mt-16 pt-8 border-t border-[rgba(0,0,0,0.1)] flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-[rgba(0,0,0,0.5)] text-sm">
+                <div className="mt-12 sm:mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p className="text-white/30 text-sm">
                         © {currentYear} Capsloque. All rights reserved.
                     </p>
                     <div className="flex gap-6">
-                        <a href="#" className="text-[rgba(0,0,0,0.5)] hover:text-black text-sm transition-colors">
+                        <a href="#" className="text-white/30 hover:text-white text-sm transition-colors">
                             Privacy Policy
                         </a>
-                        <a href="#" className="text-[rgba(0,0,0,0.5)] hover:text-black text-sm transition-colors">
+                        <a href="#" className="text-white/30 hover:text-white text-sm transition-colors">
                             Terms of Service
                         </a>
                     </div>

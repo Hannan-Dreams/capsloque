@@ -81,7 +81,6 @@ export default function Contact() {
             label: 'Email',
             value: 'capsloqueinfo@gmail.com',
             href: 'mailto:capsloqueinfo@gmail.com',
-            color: 'from-[#e60000] to-[#e60000]',
         },
         {
             icon: (
@@ -92,7 +91,6 @@ export default function Contact() {
             ),
             label: 'Location',
             value: 'Remote-First, Worldwide',
-            color: 'from-[#e60000] to-[#e60000]',
         },
         {
             icon: (
@@ -102,7 +100,6 @@ export default function Contact() {
             ),
             label: 'Response Time',
             value: 'Within 24 Hours',
-            color: 'from-[#888888] to-[#888888]',
         },
     ];
 
@@ -112,12 +109,10 @@ export default function Contact() {
     ];
 
     return (
-        <section id="contact" className="section relative overflow-hidden py-24">
+        <section id="contact" className="section relative overflow-hidden py-24 bg-[#0a0a0a]">
             <div className="absolute inset-0 bg-grid opacity-20" />
 
-            {/* Radiant Background Effects */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#e60000] rounded-full blur-[150px] opacity-[0.08] animate-pulse-glow" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#e60000] rounded-full blur-[150px] opacity-[0.08] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Section Header */}
@@ -131,10 +126,10 @@ export default function Contact() {
                     <span className="text-[#e60000] font-semibold text-sm tracking-[0.2em] uppercase mb-4 block">
                         Get In Touch
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                         Let's Create <span className="gradient-text">Something Extraordinary</span>
                     </h2>
-                    <p className="text-[rgba(0,0,0,0.6)] text-lg max-w-2xl mx-auto">
+                    <p className="text-white/50 text-lg max-w-2xl mx-auto">
                         Ready to transform your ideas into reality? We're here to help you navigate the future of technology.
                     </p>
                 </motion.div>
@@ -150,20 +145,20 @@ export default function Contact() {
                             className="glass p-8 flex flex-col justify-between h-full"
                         >
                             <div className="space-y-6">
-                                <h3 className="text-2xl font-bold text-black mb-6">Contact Info</h3>
+                                <h3 className="text-2xl font-bold text-white mb-6">Contact Info</h3>
                                 {contactInfo.map((item, index) => (
                                     <div key={index} className="flex items-start gap-4 group">
-                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-black shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e60000] to-[#cc0000] flex items-center justify-center text-white shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             {item.icon}
                                         </div>
                                         <div>
-                                            <p className="text-[rgba(0,0,0,0.5)] text-xs uppercase tracking-wider font-semibold mb-1">{item.label}</p>
+                                            <p className="text-white/40 text-xs uppercase tracking-wider font-semibold mb-1">{item.label}</p>
                                             {item.href ? (
-                                                <a href={item.href} className="text-black font-medium text-lg hover:text-[#e60000] transition-colors block break-all">
+                                                <a href={item.href} className="text-white font-medium text-base hover:text-[#e60000] transition-colors block whitespace-nowrap">
                                                     {item.value}
                                                 </a>
                                             ) : (
-                                                <p className="text-black font-medium text-lg">{item.value}</p>
+                                                <p className="text-white font-medium text-lg">{item.value}</p>
                                             )}
                                         </div>
                                     </div>
@@ -171,7 +166,7 @@ export default function Contact() {
                             </div>
 
                             <div className="mt-10">
-                                <h4 className="text-black font-medium mb-4">Follow Our Journey</h4>
+                                <h4 className="text-white font-medium mb-4">Follow Our Journey</h4>
                                 <div className="flex gap-4">
                                     {socialLinks.map((social, index) => (
                                         <a
@@ -180,7 +175,7 @@ export default function Contact() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             title={social.label}
-                                            className={`flex-1 h-12 rounded-xl flex items-center justify-center text-black transition-all duration-300 transform hover:-translate-y-1 shadow-lg ${social.className}`}
+                                            className={`flex-1 h-12 rounded-xl flex items-center justify-center text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg ${social.className}`}
                                         >
                                             {social.icon}
                                         </a>
@@ -199,13 +194,13 @@ export default function Contact() {
                         className="lg:col-span-8 h-full"
                     >
                         <div className="glass p-8 md:p-10 relative overflow-hidden h-full flex flex-col justify-center">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e60000] to-[#e60000] opacity-10 blur-2xl rounded-bl-full pointer-events-none" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e60000] to-[#cc0000] opacity-[0.05] blur-2xl rounded-bl-full pointer-events-none" />
 
                             {error && (
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-center"
+                                    className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-xl text-red-400 text-center"
                                 >
                                     {error}
                                 </motion.div>
@@ -217,13 +212,13 @@ export default function Contact() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="text-center py-20"
                                 >
-                                    <div className="w-24 h-24 bg-gradient-to-br from-[#aaaaaa] to-[#888888] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(34,197,94,0.4)]">
-                                        <svg className="w-12 h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div className="w-24 h-24 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+                                        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-3xl font-bold text-black mb-4">Message Sent Successfully!</h3>
-                                    <p className="text-[rgba(0,0,0,0.6)] text-lg max-w-md mx-auto">
+                                    <h3 className="text-3xl font-bold text-white mb-4">Message Sent Successfully!</h3>
+                                    <p className="text-white/50 text-lg max-w-md mx-auto">
                                         Thank you for reaching out. Our team will review your message and get back to you within 24 hours.
                                     </p>
                                 </motion.div>
@@ -231,7 +226,7 @@ export default function Contact() {
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="group">
-                                            <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'name' ? 'text-[#e60000]' : 'text-[rgba(0,0,0,0.7)]'}`}>Name</label>
+                                            <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'name' ? 'text-[#e60000]' : 'text-white/60'}`}>Name</label>
                                             <input
                                                 type="text"
                                                 name="name"
@@ -240,12 +235,12 @@ export default function Contact() {
                                                 onFocus={() => handleFocus('name')}
                                                 onBlur={handleBlur}
                                                 required
-                                                className="input-glass bg-[rgba(0,0,0,0.03)] border-transparent focus:bg-[rgba(0,0,0,0.08)] h-14"
+                                                className="input-glass h-14"
                                                 placeholder="John Doe"
                                             />
                                         </div>
                                         <div>
-                                            <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'email' ? 'text-[#e60000]' : 'text-[rgba(0,0,0,0.7)]'}`}>Email</label>
+                                            <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'email' ? 'text-[#e60000]' : 'text-white/60'}`}>Email</label>
                                             <input
                                                 type="email"
                                                 name="email"
@@ -254,13 +249,13 @@ export default function Contact() {
                                                 onFocus={() => handleFocus('email')}
                                                 onBlur={handleBlur}
                                                 required
-                                                className="input-glass bg-[rgba(0,0,0,0.03)] border-transparent focus:bg-[rgba(0,0,0,0.08)] h-14"
+                                                className="input-glass h-14"
                                                 placeholder="john@example.com"
                                             />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'subject' ? 'text-[#e60000]' : 'text-[rgba(0,0,0,0.7)]'}`}>Subject</label>
+                                        <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'subject' ? 'text-[#e60000]' : 'text-white/60'}`}>Subject</label>
                                         <input
                                             type="text"
                                             name="subject"
@@ -269,12 +264,12 @@ export default function Contact() {
                                             onFocus={() => handleFocus('subject')}
                                             onBlur={handleBlur}
                                             required
-                                            className="input-glass bg-[rgba(0,0,0,0.03)] border-transparent focus:bg-[rgba(0,0,0,0.08)] h-14"
+                                            className="input-glass h-14"
                                             placeholder="What is this regarding?"
                                         />
                                     </div>
                                     <div>
-                                        <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'message' ? 'text-[#e60000]' : 'text-[rgba(0,0,0,0.7)]'}`}>Message</label>
+                                        <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${focusedField === 'message' ? 'text-[#e60000]' : 'text-white/60'}`}>Message</label>
                                         <textarea
                                             name="message"
                                             value={formState.message}
@@ -283,7 +278,7 @@ export default function Contact() {
                                             onBlur={handleBlur}
                                             required
                                             rows={6}
-                                            className="input-glass bg-[rgba(0,0,0,0.03)] border-transparent focus:bg-[rgba(0,0,0,0.08)] resize-none p-4"
+                                            className="input-glass resize-none p-4"
                                             placeholder="Tell us about your project or inquiry..."
                                         />
                                     </div>
@@ -292,7 +287,7 @@ export default function Contact() {
                                         disabled={isSubmitting}
                                         whileHover={{ scale: 1.01 }}
                                         whileTap={{ scale: 0.99 }}
-                                        className="btn-primary w-full h-14 text-lg bg-gradient-to-r from-[#e60000] via-[#ff4b7d] to-[#e60000] bg-[length:200%_auto] hover:bg-right transition-all duration-500 shadow-[0_4px_20px_rgba(255,45,85,0.3)] hover:shadow-[0_4px_30px_rgba(255,45,85,0.5)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                                        className="btn-primary w-full h-14 text-lg bg-gradient-to-r from-[#e60000] via-[#ff4b7d] to-[#e60000] bg-[length:200%_auto] hover:bg-right transition-all duration-500 shadow-[0_4px_20px_rgba(230,0,0,0.3)] hover:shadow-[0_4px_30px_rgba(230,0,0,0.5)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                                     >
                                         {isSubmitting ? (
                                             <>

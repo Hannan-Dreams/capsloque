@@ -34,12 +34,12 @@ export default function ResumeReview() {
     ];
 
     return (
-        <main className="min-h-screen pt-24 pb-20">
+        <main className="min-h-screen pt-24 pb-20 bg-[#0a0a0a]">
             {/* Hero Section */}
             <section className="relative py-20 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#888888]/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#e60000]/[0.06] to-transparent" />
                 <div className="container mx-auto px-6 relative z-10">
-                    <Link href="/#services" className="inline-flex items-center gap-2 text-[rgba(0,0,0,0.6)] hover:text-black mb-8 transition-colors">
+                    <Link href="/#services" className="inline-flex items-center gap-2 text-white/40 hover:text-white mb-8 transition-colors">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
@@ -51,11 +51,11 @@ export default function ResumeReview() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-[#888888] font-medium uppercase tracking-wider text-sm">Career Services</span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6">
+                        <span className="text-[#e60000] font-medium uppercase tracking-wider text-sm">Career Services</span>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-white">
                             Resume <span className="gradient-text">Review</span>
                         </h1>
-                        <p className="text-xl text-[rgba(0,0,0,0.7)] max-w-2xl leading-relaxed">
+                        <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
                             Land your dream job with a professionally optimized resume.
                             Our experts transform your experience into a compelling story.
                         </p>
@@ -79,11 +79,11 @@ export default function ResumeReview() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="glass-card p-8 group"
+                                className="glass-card-dark p-8 group"
                             >
                                 <span className="text-4xl mb-4 block">{feature.icon}</span>
-                                <h3 className="text-xl font-semibold text-black mb-3">{feature.title}</h3>
-                                <p className="text-[rgba(0,0,0,0.6)]">{feature.description}</p>
+                                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                                <p className="text-white/40">{feature.description}</p>
                             </motion.div>
                         ))}
                     </motion.div>
@@ -99,8 +99,8 @@ export default function ResumeReview() {
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-3xl font-bold text-black mb-4">Choose Your Package</h2>
-                        <p className="text-[rgba(0,0,0,0.6)]">Investment in your future career</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">Choose Your Package</h2>
+                        <p className="text-white/40">Investment in your future career</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -111,14 +111,14 @@ export default function ResumeReview() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className={`glass-card p-8 text-center ${index === 1 ? 'border-[#888888] scale-105' : ''}`}
+                                className={`glass-card-dark p-8 text-center ${index === 1 ? 'border-[#e60000] scale-105' : ''}`}
                             >
-                                <h3 className="text-xl font-semibold text-black mb-2">{pkg.name}</h3>
-                                <div className="text-4xl font-bold text-[#888888] mb-6">{pkg.price}</div>
-                                <ul className="space-y-3 text-[rgba(0,0,0,0.6)] mb-8">
+                                <h3 className="text-xl font-semibold text-white mb-2">{pkg.name}</h3>
+                                <div className="text-4xl font-bold text-[#e60000] mb-6">{pkg.price}</div>
+                                <ul className="space-y-3 text-white/40 mb-8">
                                     {pkg.features.map((feature) => (
                                         <li key={feature} className="flex items-center justify-center gap-2">
-                                            <span className="text-[#aaaaaa]">✓</span> {feature}
+                                            <span className="text-[#e60000]">✓</span> {feature}
                                         </li>
                                     ))}
                                 </ul>
@@ -140,8 +140,8 @@ export default function ResumeReview() {
                         viewport={{ once: true }}
                         className="glass p-12 text-center max-w-3xl mx-auto"
                     >
-                        <h2 className="text-3xl font-bold text-black mb-4">Ready to Upgrade Your Career?</h2>
-                        <p className="text-[rgba(0,0,0,0.6)] mb-8">
+                        <h2 className="text-3xl font-bold text-white mb-4">Ready to Upgrade Your Career?</h2>
+                        <p className="text-white/40 mb-8">
                             Get a professional resume that opens doors to new opportunities.
                         </p>
                         <Link href="/#contact" className="btn-primary inline-flex items-center gap-2">

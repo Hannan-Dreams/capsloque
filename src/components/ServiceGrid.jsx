@@ -13,7 +13,7 @@ const services = [
             </svg>
         ),
         tags: ['Web & App', 'AI/ML', 'Enterprise'],
-        gradient: 'from-[#e60000] to-[#cccccc]',
+        gradient: 'from-[#e60000] to-[#ff4444]',
         href: '/services/web-development',
     },
     {
@@ -25,19 +25,19 @@ const services = [
             </svg>
         ),
         tags: ['Strategy', 'Growth', 'Consulting'],
-        gradient: 'from-[#bbbbbb] to-[#999999]',
+        gradient: 'from-[#ff6b35] to-[#ff9a76]',
         href: '/services/marketing-strategy',
     },
     {
         title: 'SEO & Digital Presence',
-        description: 'Dominate search results and build a commanding online presence. improved visibility through technical SEO, content strategy, and digital marketing.',
+        description: 'Dominate search results and build a commanding online presence. Improved visibility through technical SEO, content strategy, and digital marketing.',
         icon: (
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
         ),
         tags: ['SEO', 'Marketing', 'Analytics'],
-        gradient: 'from-[#e60000] to-[rgba(0,0,0,0.7)]',
+        gradient: 'from-[#8b5cf6] to-[#a78bfa]',
         href: '/services/marketing-strategy',
     },
     {
@@ -49,7 +49,7 @@ const services = [
             </svg>
         ),
         tags: ['Prototyping', 'Launch', 'Scale'],
-        gradient: 'from-[#dddddd] to-[#aaaaaa]',
+        gradient: 'from-[#06b6d4] to-[#67e8f9]',
         href: '/services/web-development',
     }
 ];
@@ -78,12 +78,12 @@ const cardVariants = {
 
 export default function ServiceGrid() {
     return (
-        <section id="services" className="py-32 relative overflow-hidden bg-white">
+        <section id="services" className="py-32 relative overflow-hidden bg-[#0a0a0a]">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[120px] rounded-full" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[120px] rounded-full" />
-                <div className="bg-grid opacity-[0.15] absolute inset-0" />
+                <div className="bg-grid opacity-[0.3] absolute inset-0" />
             </div>
 
             <div className="container mx-auto px-6 relative z-10">
@@ -98,10 +98,10 @@ export default function ServiceGrid() {
                     <span className="text-[#e60000] font-semibold mb-6 block uppercase tracking-[0.2em] text-sm">
                         Enterprise Solutions
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                         We Engineer <span className="gradient-text">Success</span>
                     </h2>
-                    <p className="text-lg text-[rgba(0,0,0,0.7)] leading-relaxed">
+                    <p className="text-lg text-white/50 leading-relaxed">
                         Partner with Capsloque to build world-class digital products.
                         We combine strategy, design, and engineering to deliver exceptional results.
                     </p>
@@ -119,37 +119,37 @@ export default function ServiceGrid() {
                         <Link key={service.title} href={service.href} className="group block h-full">
                             <motion.div
                                 variants={cardVariants}
-                                className="h-full relative overflow-hidden bg-[rgba(0,0,0,0.03)] backdrop-blur-xl border border-[rgba(0,0,0,0.05)] rounded-2xl p-10 hover:bg-[rgba(0,0,0,0.05)] hover:border-[rgba(0,0,0,0.1)] transition-all duration-500"
+                                className="h-full relative overflow-hidden glass-card-dark p-10"
                             >
                                 {/* Hover Gradient Effect */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`} />
 
                                 <div className="relative z-10 flex flex-col h-full">
                                     <div className="flex items-start justify-between mb-8">
-                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-black shadow-lg shadow-[rgba(0,0,0,0.3)] group-hover:scale-110 transition-transform duration-500`}>
+                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                                             {service.icon}
                                         </div>
                                         <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 group-hover:translate-x-0">
-                                            <span className="text-sm font-medium text-black">Explore</span>
-                                            <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <span className="text-sm font-medium text-white/70">Explore</span>
+                                            <svg className="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-[#e60000] transition-colors duration-300">
+                                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#e60000] transition-colors duration-300">
                                         {service.title}
                                     </h3>
 
-                                    <p className="text-[rgba(0,0,0,0.6)] leading-relaxed mb-8 flex-grow">
+                                    <p className="text-white/40 leading-relaxed mb-8 flex-grow">
                                         {service.description}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-2 pt-6 border-t border-red-300">
+                                    <div className="flex flex-wrap gap-2 pt-6 border-t border-white/[0.06]">
                                         {service.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="text-xs font-medium px-3 py-1 rounded-full bg-[rgba(255, 0, 0, 0.05)] text-black border border-red-500"
+                                                className="text-xs font-medium px-3 py-1 rounded-full bg-white/[0.05] text-white/60 border border-white/[0.08]"
                                             >
                                                 {tag}
                                             </span>

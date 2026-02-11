@@ -17,7 +17,7 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        
+
         { name: 'Services', href: '/#services' },
         // { name: 'Roadmap', href: '#roadmap' },
         { name: 'About', href: '/#about' },
@@ -32,7 +32,7 @@ export default function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className={`fixed top-0 py-[10px] left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                ? 'bg-white/80 backdrop-blur-xl border-b border-[rgba(0,0,0,0.1)]'
+                ? 'bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.06]'
                 : 'bg-transparent'
                 }`}
         >
@@ -40,15 +40,8 @@ export default function Navbar() {
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/#hero" className="flex items-center gap-3 group">
-                        {/* <motion.div
-                            whileHover={{ rotate: 180, scale: 1.1 }}
-                            transition={{ duration: 0.5 }}
-                            className="w-10 h-10 bg-gradient-to-br from-[#e60000] to-[#e60000] rounded-lg flex items-center justify-center"
-                        >
-                            <span className="text-black font-bold text-xl">C</span>
-                        </motion.div> */}
                         <span className="text-xl font-bold tracking-tight">
-                            <span className="text-black">CAPS</span>
+                            <span className="text-white">CAPS</span>
                             <span className="text-[#e60000]">LOQUE</span>
                         </span>
                     </Link>
@@ -62,10 +55,10 @@ export default function Navbar() {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="text-[rgba(0,0,0,0.7)] hover:text-black font-medium transition-all duration-300 relative group"
+                                className="text-white/60 hover:text-white font-medium transition-all duration-300 relative group"
                             >
                                 {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#e60000] to-[#e60000] group-hover:w-full transition-all duration-300" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#e60000] to-[#ff4444] group-hover:w-full transition-all duration-300" />
                             </motion.a>
                         ))}
                         <motion.a
@@ -82,19 +75,19 @@ export default function Navbar() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border border-black/20 rounded-lg"
+                        className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 rounded-lg"
                     >
                         <motion.span
                             animate={mobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                            className="w-5 h-0.5 bg-black origin-center transition-all"
+                            className="w-5 h-0.5 bg-white origin-center transition-all"
                         />
                         <motion.span
                             animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                            className="w-5 h-0.5 bg-black"
+                            className="w-5 h-0.5 bg-white"
                         />
                         <motion.span
                             animate={mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                            className="w-5 h-0.5 bg-black origin-center transition-all"
+                            className="w-5 h-0.5 bg-white origin-center transition-all"
                         />
                     </button>
                 </div>
@@ -103,7 +96,7 @@ export default function Navbar() {
                 <motion.div
                     initial={false}
                     animate={mobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-                    className="md:hidden overflow-hidden bg-white backdrop-blur-xl mt-4 rounded-xl border border-black/10"
+                    className="md:hidden overflow-hidden bg-[#111111]/95 backdrop-blur-xl mt-4 rounded-xl border border-white/[0.06]"
                 >
                     <div className="py-4 space-y-4 px-8">
                         {navLinks.map((link) => (
@@ -111,7 +104,7 @@ export default function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block text-black/70 hover:text-black font-medium py-2"
+                                className="block text-white/60 hover:text-white font-medium py-2"
                             >
                                 {link.name}
                             </Link>
