@@ -29,25 +29,15 @@ export default function Hero() {
 
         const ctx = canvas.getContext('2d');
 
-        // Google brand colors + neutrals for Antigravity style
         const colors = [
-            '#f30000ff', // Google Blue
-            '#EA4335', // Google Red
-            '#FBBC04', // Google Yellow
-            '#34A853', // Google Green
-            '#9B59B6', // Purple accent
-            '#3a3a3a', // Dark grey
-            '#5a5a5a', // Medium grey
-            '#7a7a7a', // Light grey
-            '#4a4a4a', // Near black
-            '#6a6a6a', // Grey
+            '#d40000', '#c5362b', '#d4a003', '#2a8a44', '#7c3fa0',
+            '#b0b0b0', '#909090', '#a0a0a0', '#888888', '#999999',
         ];
 
         // Set canvas size
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // Reinitialize particles on resize
             initParticles();
         };
 
@@ -57,36 +47,24 @@ export default function Hero() {
             particlesRef.current = [];
 
             for (let i = 0; i < numParticles; i++) {
-                // Spread particles across the entire viewport
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
-
-                // Determine if particle is colored (30%) or neutral (70%)
                 const isColored = Math.random() < 0.3;
                 const colorIndex = isColored
-                    ? Math.floor(Math.random() * 5) // Pick from first 5 (brand colors)
-                    : 5 + Math.floor(Math.random() * 5); // Pick from neutrals
+                    ? Math.floor(Math.random() * 5)
+                    : 5 + Math.floor(Math.random() * 5);
 
                 particlesRef.current.push({
-                    x,
-                    y,
-                    baseX: x,
-                    baseY: y,
-                    vx: 0,
-                    vy: 0,
-                    // Dash/pill dimensions - elongated shape
+                    x, y, baseX: x, baseY: y, vx: 0, vy: 0,
                     length: 8 + Math.random() * 16,
                     width: 2 + Math.random() * 2,
                     rotation: Math.random() * Math.PI * 2,
                     speed: 0.02 + Math.random() * 0.03,
-                    // Depth simulation - size affects perceived distance
                     depth: 0.3 + Math.random() * 0.7,
                     color: colors[colorIndex],
                     isColored,
-                    // Flow field parameters
                     flowAngle: Math.random() * Math.PI * 2,
                     flowSpeed: 0.3 + Math.random() * 0.5,
-                    // Idle drift
                     driftPhase: Math.random() * Math.PI * 2,
                     driftSpeed: 0.2 + Math.random() * 0.4,
                     driftAmplitude: 15 + Math.random() * 25,
@@ -97,7 +75,6 @@ export default function Hero() {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Mouse tracking with smooth interpolation
         let targetMouseX = canvas.width / 2;
         let targetMouseY = canvas.height / 2;
         let smoothMouseX = canvas.width / 2;
@@ -109,124 +86,96 @@ export default function Hero() {
         };
         window.addEventListener('mousemove', handleMouseMove);
 
-        // Animation loop - Antigravity style
         let time = 0;
         const animate = () => {
             time += 0.016;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Smooth mouse interpolation for fluid feel
             smoothMouseX += (targetMouseX - smoothMouseX) * 0.08;
             smoothMouseY += (targetMouseY - smoothMouseY) * 0.08;
 
             particlesRef.current.forEach((particle) => {
-                // Calculate direction from particle to mouse
                 const dx = smoothMouseX - particle.x;
                 const dy = smoothMouseY - particle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                const orbitRadius = 80; // Particles orbit at this distance
-                const interactionRadius = 250; // Strong interaction zone
-                const maxDistance = 450; // Weaker influence zone
-
-                // Calculate angle toward mouse
+                const orbitRadius = 80;
+                const interactionRadius = 250;
+                const maxDistance = 450;
                 const angleToMouse = Math.atan2(dy, dx);
 
-                // Orbit physics - attract when far, repel when too close
                 let forceX = 0;
                 let forceY = 0;
 
                 if (distance < interactionRadius && distance > 0) {
                     if (distance < orbitRadius) {
-                        // REPEL - push away from cursor when too close
                         const repelForce = (1 - distance / orbitRadius) * 4;
                         forceX = -(dx / distance) * repelForce;
                         forceY = -(dy / distance) * repelForce;
                     } else {
-                        // ATTRACT - pull toward cursor when in outer interaction zone
                         const attractForce = ((distance - orbitRadius) / (interactionRadius - orbitRadius)) * 2;
                         forceX = (dx / distance) * attractForce;
                         forceY = (dy / distance) * attractForce;
                     }
-
-                    // Add tangential (orbital) velocity for swirling effect
                     const tangentX = -dy / distance;
                     const tangentY = dx / distance;
                     const orbitalSpeed = (1 - Math.abs(distance - orbitRadius) / interactionRadius) * 1.5;
                     forceX += tangentX * orbitalSpeed;
                     forceY += tangentY * orbitalSpeed;
-
-                    // Orient along movement direction
                     particle.flowAngle += (angleToMouse - particle.flowAngle) * 0.15;
                 } else if (distance < maxDistance) {
-                    // Weaker attraction in outer zone
                     const influence = (1 - distance / maxDistance) * 0.8;
                     forceX = (dx / distance) * influence;
                     forceY = (dy / distance) * influence;
                     particle.flowAngle += (angleToMouse - particle.flowAngle) * 0.05;
                 }
 
-                // Gentle drift motion (antigravity floating)
                 const driftX = Math.sin(time * particle.driftSpeed + particle.driftPhase) * particle.driftAmplitude * 0.012;
                 const driftY = Math.cos(time * particle.driftSpeed * 0.7 + particle.driftPhase) * particle.driftAmplitude * 0.012;
-
-                // Base flow movement
                 const baseFlowStrength = 0.15;
                 const flowVx = Math.cos(particle.flowAngle) * baseFlowStrength;
                 const flowVy = Math.sin(particle.flowAngle) * baseFlowStrength;
 
-                // Combine all forces with smooth acceleration
                 const targetVx = flowVx + forceX + driftX;
                 const targetVy = flowVy + forceY + driftY;
 
-                // Smooth velocity interpolation for fluid movement
                 particle.vx += (targetVx - particle.vx) * 0.08;
                 particle.vy += (targetVy - particle.vy) * 0.08;
-
-                // Update position with velocity
                 particle.x += particle.vx;
                 particle.y += particle.vy;
 
-                // Wrap particles around screen edges
                 if (particle.x < -50) particle.x = canvas.width + 50;
                 if (particle.x > canvas.width + 50) particle.x = -50;
                 if (particle.y < -50) particle.y = canvas.height + 50;
                 if (particle.y > canvas.height + 50) particle.y = -50;
 
-                // Rotate dash to align with movement direction when moving fast, or toward cursor when near
                 let targetRotation;
                 const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
                 if (distance < interactionRadius) {
-                    // Point toward cursor when in interaction zone
                     targetRotation = angleToMouse;
                 } else if (speed > 0.5) {
-                    // Align with movement direction
                     targetRotation = Math.atan2(particle.vy, particle.vx);
                 } else {
                     targetRotation = particle.flowAngle;
                 }
                 particle.rotation += (targetRotation - particle.rotation) * 0.12;
 
-                // Size based on depth and proximity to cursor - STRONGER effect
                 const inInteraction = distance < interactionRadius;
                 const proximityBoost = inInteraction
-                    ? (1 - distance / interactionRadius) * 1.5  // Strong boost in interaction zone
+                    ? (1 - distance / interactionRadius) * 1.5
                     : (distance < maxDistance ? (1 - distance / maxDistance) * 0.3 : 0);
                 const currentLength = particle.length * particle.depth * (1 + proximityBoost);
                 const currentWidth = particle.width * particle.depth * (1 + proximityBoost);
 
-                // Opacity - much brighter near cursor
                 const baseOpacity = 0.25 + particle.depth * 0.35;
                 const opacityBoost = inInteraction
                     ? (1 - distance / interactionRadius) * 0.5
                     : (distance < maxDistance ? (1 - distance / maxDistance) * 0.2 : 0);
                 const opacity = Math.min(1, baseOpacity + opacityBoost);
 
-                // Draw dash/pill particle
                 ctx.save();
                 ctx.translate(particle.x, particle.y);
                 ctx.rotate(particle.rotation);
 
-                // Strong glow effect for particles near cursor
                 if (inInteraction) {
                     const glowIntensity = (1 - distance / interactionRadius);
                     ctx.shadowColor = particle.isColored ? particle.color : 'rgba(230, 0, 0, 0.8)';
@@ -244,14 +193,14 @@ export default function Hero() {
                 ctx.restore();
             });
 
-            // Draw red vignette/edge glow
+            // Edge vignette
             const gradient = ctx.createRadialGradient(
                 canvas.width / 2, canvas.height / 2, 0,
                 canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) * 0.7
             );
             gradient.addColorStop(0, 'rgba(230, 0, 0, 0)');
             gradient.addColorStop(0.7, 'rgba(230, 0, 0, 0)');
-            gradient.addColorStop(1, 'rgba(230, 0, 0, 0.08)');
+            gradient.addColorStop(1, 'rgba(230, 0, 0, 0.04)');
 
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -270,11 +219,14 @@ export default function Hero() {
         };
     }, [isMobile]);
 
-    return (
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-[#0a0a0a]" />
+    const ringColor = 'rgba(0,0,0,0.12)';
+    const ringColorInner = 'rgba(0,0,0,0.06)';
+    const dashedRingColor = 'rgba(0,0,0,0.08)';
+    const hexStroke = '#000000';
+    const scrollBorderColor = 'rgba(0,0,0,0.15)';
 
+    return (
+        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'var(--background)' }}>
             {/* Particle canvas - hidden on mobile */}
             {!isMobile && (
                 <canvas
@@ -298,8 +250,8 @@ export default function Hero() {
                         transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
                         className="absolute w-full h-full"
                     >
-                        <div className="absolute inset-0 rounded-full border-2 border-white/20" />
-                        <div className="absolute inset-4 sm:inset-8 rounded-full border-2 border-white/10" />
+                        <div className="absolute inset-0 rounded-full" style={{ border: `2px solid ${ringColor}` }} />
+                        <div className="absolute inset-4 sm:inset-8 rounded-full" style={{ border: `2px solid ${ringColorInner}` }} />
                     </motion.div>
 
                     {/* Middle counter-rotating ring */}
@@ -308,7 +260,7 @@ export default function Hero() {
                         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                         className="absolute w-[80%] h-[80%]"
                     >
-                        <div className="absolute inset-0 rounded-full border-2 border-dashed border-white/15" />
+                        <div className="absolute inset-0 rounded-full" style={{ border: `2px dashed ${dashedRingColor}` }} />
                     </motion.div>
 
                     {/* Core element */}
@@ -317,7 +269,7 @@ export default function Hero() {
                         transition={{ duration: 4, repeat: Infinity }}
                         className="relative w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px]"
                     >
-                        <div className="absolute inset-0 rounded-full bg-white/[0.02] blur-xl" />
+                        <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(0,0,0,0.02)' }} />
 
                         {/* Inner hexagon pattern */}
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -330,7 +282,7 @@ export default function Hero() {
                                     <polygon
                                         points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5"
                                         fill="none"
-                                        stroke="#ffffff"
+                                        stroke={hexStroke}
                                         strokeWidth="1"
                                         className="opacity-15"
                                     />
@@ -353,28 +305,48 @@ export default function Hero() {
             {/* Main Content */}
             <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 sm:pt-28 md:pt-20 pb-20">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] mb-6 sm:mb-8"
-                    >
-                        <span className="block text-white">Engineering</span>
-                        <span className="block mt-1 sm:mt-2">
-                            <span className="bg-gradient-to-r from-[#e60000] via-[#cc0000] to-[#e60000] bg-clip-text text-transparent">
+                    {/* "Engineering" — mask reveal slide up */}
+                    <div className="overflow-hidden mb-1 sm:mb-2">
+                        <motion.h1
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1]"
+                            style={{ color: 'var(--text-primary)' }}
+                        >
+                            Engineering
+                        </motion.h1>
+                    </div>
+
+                    {/* "the Future" — mask reveal slide up + glow */}
+                    <div className="overflow-hidden mb-6 sm:mb-8">
+                        <motion.h1
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1]"
+                        >
+                            <span
+                                className="hero-glow-text bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage: 'linear-gradient(135deg, #e60000, #ff4444, #cc0000)',
+                                }}
+                            >
                                 the Future
                             </span>
-                        </span>
-                    </motion.h1>
+                        </motion.h1>
+                    </div>
 
+                    {/* Subtitle — smooth fade slide */}
                     <motion.p
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-base sm:text-lg md:text-xl text-white/60 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2"
+                        transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                        className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2"
+                        style={{ color: 'var(--text-secondary)' }}
                     >
                         We craft cutting-edge digital experiences and innovative tech solutions
-                        that transform businesses and define tomorrow's possibilities.
+                        that transform businesses and define tomorrow&apos;s possibilities.
                     </motion.p>
 
                     <motion.div
@@ -394,7 +366,12 @@ export default function Hero() {
                         </a>
                         <a
                             href="#contact"
-                            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 w-full sm:w-auto rounded-xl font-semibold text-white border-2 border-white/20 transition-all duration-300 hover:border-[#e60000] hover:text-[#e60000] hover:-translate-y-1"
+                            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 w-full sm:w-auto rounded-xl font-semibold border-2 transition-all duration-300 hover:border-[#e60000] hover:text-[#e60000] hover:-translate-y-1"
+                            style={{
+                                color: 'var(--text-primary)',
+                                borderColor: 'rgba(0,0,0,0.15)',
+                                transition: 'color 0.3s ease, border-color 0.3s ease',
+                            }}
                         >
                             <span>Get in Touch</span>
                             <svg className="w-5 h-5 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -412,11 +389,12 @@ export default function Hero() {
                 transition={{ delay: 2 }}
                 className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden sm:flex"
             >
-                <span className="text-xs text-white/30 uppercase tracking-widest">Scroll</span>
+                <span style={{ color: 'var(--text-muted)' }} className="text-xs uppercase tracking-widest">Scroll</span>
                 <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-5 h-8 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5"
+                    className="w-5 h-8 rounded-full flex items-start justify-center p-1.5"
+                    style={{ border: `2px solid ${scrollBorderColor}` }}
                 >
                     <motion.div className="w-1 h-2 bg-[#e60000] rounded-full" />
                 </motion.div>

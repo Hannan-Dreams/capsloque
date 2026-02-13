@@ -14,6 +14,7 @@ const services = [
         ),
         tags: ['Web & App', 'AI/ML', 'Enterprise'],
         gradient: 'from-[#e60000] to-[#ff4444]',
+        accentColor: '#e60000',
         href: '/services/web-development',
     },
     {
@@ -26,6 +27,7 @@ const services = [
         ),
         tags: ['Strategy', 'Growth', 'Consulting'],
         gradient: 'from-[#ff6b35] to-[#ff9a76]',
+        accentColor: '#ff6b35',
         href: '/services/marketing-strategy',
     },
     {
@@ -38,7 +40,8 @@ const services = [
         ),
         tags: ['SEO', 'Marketing', 'Analytics'],
         gradient: 'from-[#8b5cf6] to-[#a78bfa]',
-        href: '/services/marketing-strategy',
+        accentColor: '#8b5cf6',
+        href: '/services/seo-digital',
     },
     {
         title: 'Startup MVP & Scaling',
@@ -50,7 +53,8 @@ const services = [
         ),
         tags: ['Prototyping', 'Launch', 'Scale'],
         gradient: 'from-[#06b6d4] to-[#67e8f9]',
-        href: '/services/web-development',
+        accentColor: '#06b6d4',
+        href: '/services/startup-mvp',
     }
 ];
 
@@ -77,12 +81,13 @@ const cardVariants = {
 };
 
 export default function ServiceGrid() {
+
     return (
-        <section id="services" className="py-32 relative overflow-hidden bg-[#0a0a0a]">
+        <section id="services" className="py-32 relative overflow-hidden" style={{ background: 'var(--background)' }}>
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[120px] rounded-full" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[120px] rounded-full" />
+                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#e60000] blur-[120px] rounded-full" style={{ opacity: 'var(--orb-opacity)' }} />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] blur-[120px] rounded-full" style={{ opacity: 'var(--orb-opacity)' }} />
                 <div className="bg-grid opacity-[0.3] absolute inset-0" />
             </div>
 
@@ -98,10 +103,10 @@ export default function ServiceGrid() {
                     <span className="text-[#e60000] font-semibold mb-6 block uppercase tracking-[0.2em] text-sm">
                         Enterprise Solutions
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: 'var(--text-primary)' }}>
                         We Engineer <span className="gradient-text">Success</span>
                     </h2>
-                    <p className="text-lg text-white/50 leading-relaxed">
+                    <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                         Partner with Capsloque to build world-class digital products.
                         We combine strategy, design, and engineering to deliver exceptional results.
                     </p>
@@ -120,6 +125,7 @@ export default function ServiceGrid() {
                             <motion.div
                                 variants={cardVariants}
                                 className="h-full relative overflow-hidden glass-card-dark p-10"
+                                style={{ backgroundColor: 'rgba(230, 0, 0, 0.04)', borderColor: 'rgba(230, 0, 0, 0.1)' }}
                             >
                                 {/* Hover Gradient Effect */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`} />
@@ -130,26 +136,31 @@ export default function ServiceGrid() {
                                             {service.icon}
                                         </div>
                                         <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 group-hover:translate-x-0">
-                                            <span className="text-sm font-medium text-white/70">Explore</span>
-                                            <svg className="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Explore</span>
+                                            <svg className="w-5 h-5" style={{ color: 'var(--text-secondary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#e60000] transition-colors duration-300">
+                                    <h3 className="text-2xl font-bold mb-4 group-hover:text-[#e60000] transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                                         {service.title}
                                     </h3>
 
-                                    <p className="text-white/40 leading-relaxed mb-8 flex-grow">
+                                    <p className="leading-relaxed mb-8 flex-grow" style={{ color: 'var(--text-muted)' }}>
                                         {service.description}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-2 pt-6 border-t border-white/[0.06]">
+                                    <div className="flex flex-wrap gap-2 pt-6" style={{ borderTop: '1px solid var(--border-subtle)' }}>
                                         {service.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="text-xs font-medium px-3 py-1 rounded-full bg-white/[0.05] text-white/60 border border-white/[0.08]"
+                                                className="text-xs font-medium px-3 py-1 rounded-full"
+                                                style={{
+                                                    background: 'var(--tag-bg)',
+                                                    color: 'var(--text-secondary)',
+                                                    border: '1px solid var(--tag-border)',
+                                                }}
                                             >
                                                 {tag}
                                             </span>

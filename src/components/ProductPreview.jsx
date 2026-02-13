@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 const products = [
     {
-        title: 'AI Chatbot Platform',
-        description: 'Intelligent conversational AI that handles customer support 24/7 with human-like understanding and contextual awareness.',
-        tags: ['NLP', 'Customer Service', 'Automation'],
+        title: 'ATS Friendly Resume Builder',
+        description: 'Build professional, ATS-optimized resumes that pass automated screening systems and land you more interviews.',
+        tags: ['ATS', 'Resume', 'Career'],
         icon: (
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
         ),
         accentColor: '#e60000',
@@ -129,15 +129,16 @@ const cardVariants = {
 };
 
 export default function ProductPreview() {
+    const numberColor = 'rgba(0,0,0,0.04)';
+    const numberHoverColor = 'rgba(0,0,0,0.08)';
+
     return (
-        <section className="py-28 md:py-36 relative overflow-hidden bg-[#0a0a0a]">
+        <section className="py-28 md:py-36 relative overflow-hidden" style={{ background: 'var(--background)' }}>
             {/* Background Decorations */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* Ambient glow orbs */}
-                <div className="absolute top-[-15%] left-[-10%] w-[600px] h-[600px] bg-[#e60000] opacity-[0.04] blur-[150px] rounded-full" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[130px] rounded-full" />
-                <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#e60000] opacity-[0.015] blur-[200px] rounded-full" />
-                {/* Dot grid overlay */}
+                <div className="absolute top-[-15%] left-[-10%] w-[600px] h-[600px] bg-[#e60000] blur-[150px] rounded-full" style={{ opacity: 'var(--orb-opacity)' }} />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] blur-[130px] rounded-full" style={{ opacity: 'var(--orb-opacity)' }} />
+                <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#e60000] blur-[200px] rounded-full" style={{ opacity: '0.02' }} />
                 <div className="absolute inset-0 bg-dot-grid opacity-60" />
             </div>
 
@@ -153,10 +154,10 @@ export default function ProductPreview() {
                     <span className="text-[#e60000] font-semibold mb-6 block uppercase tracking-[0.2em] text-sm">
                         Our Suite
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: 'var(--text-primary)' }}>
                         Powerful <span className="gradient-text">Products</span> Built for Scale
                     </h2>
-                    <p className="text-lg text-white/50 leading-relaxed">
+                    <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                         Discover our suite of intelligent AI solutions designed to transform your business operations and drive measurable results.
                     </p>
                 </motion.div>
@@ -173,7 +174,10 @@ export default function ProductPreview() {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className="group relative glass-card-dark p-8 flex flex-col h-full"
+                            className="group relative glass-card-dark p-8 flex flex-col h-full transition-colors duration-300"
+                            style={{ backgroundColor: `${product.accentColor}08`, borderColor: `${product.accentColor}15` }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = `${product.accentColor}12`; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = `${product.accentColor}08`; }}
                         >
                             {/* Top accent line */}
                             <div
@@ -182,7 +186,11 @@ export default function ProductPreview() {
                             />
 
                             {/* Product number */}
-                            <span className="absolute top-6 right-8 text-white/[0.06] text-6xl font-bold leading-none select-none group-hover:text-white/[0.1] transition-colors duration-500">
+                            <span
+                                className="absolute top-6 right-8 text-6xl font-bold leading-none select-none transition-colors duration-500"
+                                style={{ color: numberColor }}
+                                onMouseEnter={() => { }}
+                            >
                                 {String(index + 1).padStart(2, '0')}
                             </span>
 
@@ -194,7 +202,6 @@ export default function ProductPreview() {
                                     border: `1px solid ${product.accentColor}33`,
                                     boxShadow: `0 0 0px ${product.accentColor}00`,
                                 }}
-                                onMouseEnter={() => { }}
                             >
                                 <div style={{ color: product.accentColor }}>
                                     {product.icon}
@@ -202,10 +209,10 @@ export default function ProductPreview() {
                             </div>
 
                             {/* Content */}
-                            <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-white transition-colors duration-300 relative z-10">
+                            <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 relative z-10" style={{ color: 'var(--text-primary)' }}>
                                 {product.title}
                             </h3>
-                            <p className="text-white/40 text-sm leading-relaxed mb-6 flex-grow relative z-10">
+                            <p className="text-sm leading-relaxed mb-6 flex-grow relative z-10" style={{ color: 'var(--text-muted)' }}>
                                 {product.description}
                             </p>
 
@@ -226,17 +233,15 @@ export default function ProductPreview() {
                                 ))}
                             </div>
 
-                            {/* Bottom action */}
-                            <div className="flex items-center gap-2 text-white/30 group-hover:text-white/70 transition-all duration-500 relative z-10 mt-auto pt-4 border-t border-white/[0.05]">
-                                <span className="text-sm font-medium">Learn more</span>
-                                <svg
-                                    className="w-4 h-4 transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
+                            {/* Upcoming badge on hover */}
+                            <div
+                                className="relative z-10 mt-auto pt-4 flex items-center justify-between"
+                                style={{ borderTop: '1px solid var(--border-subtle)' }}
+                            >
+                                <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-400 transform translate-y-2 group-hover:translate-y-0 inline-flex items-center gap-2 px-3 py-1 rounded-full text-[#e60000] bg-[#e60000]/10 border border-[#e60000]/20">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#e60000] animate-pulse" />
+                                    Upcoming
+                                </span>
                             </div>
                         </motion.div>
                     ))}

@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 const products = [
     {
-        title: 'AI Chatbot Platform',
-        description: 'Intelligent conversational AI that handles customer support 24/7 with human-like understanding.',
-        tags: ['NLP', 'Customer Service', 'Automation'],
+        title: 'ATS Friendly Resume Builder',
+        description: 'Build professional, ATS-optimized resumes that pass automated screening systems and land you more interviews.',
+        tags: ['ATS', 'Resume', 'Career'],
         icon: (
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
         ),
         accentColor: '#e60000',
@@ -91,7 +91,7 @@ const cardVariants = {
 
 export default function ProductsPage() {
     return (
-        <main className="min-h-screen bg-[#0a0a0a] pt-24 pb-20 relative overflow-hidden">
+        <main className="min-h-screen pt-24 pb-20 relative overflow-hidden" style={{ background: 'var(--background)' }}>
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#e60000] opacity-[0.03] blur-[120px] rounded-full" />
@@ -101,7 +101,7 @@ export default function ProductsPage() {
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Back Link */}
-                <Link href="/#products" className="inline-flex items-center gap-2 text-white/40 hover:text-white mb-8 transition-colors">
+                <Link href="/#products" className="inline-flex items-center gap-2 mb-8 transition-colors" style={{ color: 'var(--text-muted)' }}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
@@ -118,10 +118,10 @@ export default function ProductsPage() {
                     <span className="text-[#e60000] font-semibold text-sm tracking-[0.2em] uppercase mb-4 block">
                         Our Suite
                     </span>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
                         All <span className="gradient-text">Products</span>
                     </h1>
-                    <p className="text-xl text-white/50 leading-relaxed">
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                         Explore our complete suite of AI-powered solutions built for modern businesses.
                     </p>
                 </motion.div>
@@ -137,10 +137,13 @@ export default function ProductsPage() {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className="group relative glass-card-dark p-8 flex flex-col h-full"
+                            className="group relative glass-card-dark p-8 flex flex-col h-full transition-colors duration-300"
+                            style={{ backgroundColor: `${product.accentColor}08`, borderColor: `${product.accentColor}15` }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = `${product.accentColor}12`; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = `${product.accentColor}08`; }}
                         >
                             {/* Number */}
-                            <span className="absolute top-6 right-6 text-xs font-mono text-white/15 tracking-wider">
+                            <span className="absolute top-6 right-6 text-xs  font-mono tracking-wider text-gray-500" >
                                 {String(index + 1).padStart(2, '0')}
                             </span>
 
@@ -163,33 +166,34 @@ export default function ProductsPage() {
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#e60000] transition-colors duration-300">
+                            <h3 className="text-xl font-bold mb-3 group-hover:text-[#e60000] transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                                 {product.title}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-white/40 leading-relaxed mb-6 flex-grow">
+                            <p className="leading-relaxed mb-6 flex-grow" style={{ color: 'var(--text-muted)' }}>
                                 {product.description}
                             </p>
 
                             {/* Tags */}
-                            <div className="flex flex-wrap gap-2 pt-5 border-t border-white/[0.06]">
+                            <div className="flex flex-wrap gap-2 pt-5" style={{ borderTop: '1px solid var(--card-border)' }}>
                                 {product.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="text-xs font-medium px-3 py-1 rounded-full bg-white/[0.05] text-white/50 border border-white/[0.08]"
+                                        className="text-xs font-medium px-3 py-1 rounded-full"
+                                        style={{ background: 'var(--tag-bg)', color: 'var(--text-secondary)', border: '1px solid var(--tag-border)' }}
                                     >
                                         {tag}
                                     </span>
                                 ))}
                             </div>
 
-                            {/* Hover Arrow */}
+                            {/* Upcoming badge on hover */}
                             <div className="flex items-center gap-2 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                                <span className="text-sm font-medium text-white/60">Learn More</span>
-                                <svg className="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
+                                <span className="text-sm font-medium inline-flex items-center gap-2 px-3 py-1 rounded-full text-[#e60000] bg-[#e60000]/10 border border-[#e60000]/20">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#e60000] animate-pulse" />
+                                    Upcoming
+                                </span>
                             </div>
                         </motion.div>
                     ))}
@@ -204,8 +208,8 @@ export default function ProductsPage() {
                     className="text-center mt-20"
                 >
                     <div className="glass p-12 max-w-3xl mx-auto">
-                        <h2 className="text-3xl font-bold text-white mb-4">Interested in Our Products?</h2>
-                        <p className="text-white/50 mb-8">
+                        <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Interested in Our Products?</h2>
+                        <p className="mb-8" style={{ color: 'var(--text-secondary)' }}>
                             Let's discuss how our AI solutions can transform your business operations.
                         </p>
                         <Link href="/#contact" className="btn-primary inline-flex items-center gap-2">
