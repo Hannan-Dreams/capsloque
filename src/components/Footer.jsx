@@ -92,7 +92,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-12 sm:mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>© {currentYear} Capsloque. All rights reserved.</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>© {currentYear} CAPSLOQUE  Pvt. Ltd. All rights reserved.</p>
                     <div className="flex gap-6">
                         <a href="#" className="text-sm transition-colors hover:text-[var(--text-primary)]" style={{ color: 'var(--text-muted)' }}>Privacy Policy</a>
                         <a href="#" className="text-sm transition-colors hover:text-[var(--text-primary)]" style={{ color: 'var(--text-muted)' }}>Terms of Service</a>
