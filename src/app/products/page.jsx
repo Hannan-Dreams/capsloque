@@ -5,6 +5,19 @@ import Link from 'next/link';
 
 const products = [
     {
+        title: 'qloque',
+        description: 'Your link-in-bio platform — create a stunning page in seconds. Share everything you create, promote, and sell from one beautiful page.',
+        tags: ['Link-in-Bio', 'Creator Tools', 'Social'],
+        icon: (
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+        ),
+        accentColor: '#7c3aed',
+        isLive: true,
+        link: 'https://qloque.space',
+    },
+    {
         title: 'ATS Friendly Resume Builder',
         description: 'Build professional, ATS-optimized resumes that pass automated screening systems and land you more interviews.',
         tags: ['ATS', 'Resume', 'Career'],
@@ -188,12 +201,28 @@ export default function ProductsPage() {
                                 ))}
                             </div>
 
-                            {/* Upcoming badge on hover */}
-                            <div className="flex items-center gap-2 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                                <span className="text-sm font-medium inline-flex items-center gap-2 px-3 py-1 rounded-full text-[#e60000] bg-[#e60000]/10 border border-[#e60000]/20">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#e60000] animate-pulse" />
-                                    Upcoming
-                                </span>
+                            {/* Status badge */}
+                            <div className="flex items-center gap-2 mt-6">
+                                {product.isLive ? (
+                                    <a
+                                        href={product.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm font-medium inline-flex items-center gap-2 px-3 py-1 rounded-full transition-colors duration-300"
+                                        style={{ color: '#34d399', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)' }}
+                                    >
+                                        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#34d399' }} />
+                                        Live — Visit
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 inline-flex items-center gap-2 px-3 py-1 rounded-full text-[#e60000] bg-[#e60000]/10 border border-[#e60000]/20">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[#e60000] animate-pulse" />
+                                        Upcoming
+                                    </span>
+                                )}
                             </div>
                         </motion.div>
                     ))}
